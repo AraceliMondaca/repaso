@@ -1,0 +1,134 @@
+<?php
+
+class Teatro{
+    
+    //atributos
+    private $nombreFuncion;
+    private $direccion;
+    private $precio;
+    private $totalVoletos;
+   
+  
+    //Metodos
+    public function __construct($nombreFuncion,$direccion,$precio){
+        $this -> $nombreFuncion = $nombreFuncion;
+        $this -> $direccion = $direccion;
+        $this -> $precio = $precio;
+    }
+    
+    public function getNombreFunciones(){
+        return $this->nombreFunciones;
+    }
+    public function getDireccion(){
+        return $this->direccion;
+    }
+    public function getPrecio(){
+        return $this->precio;
+    }
+    public function getFunciones(){
+        return $this->funciones;
+    }
+    
+    /**
+     * arreglo de las funciones 
+     * @return array
+     */
+    public function verDatos(){
+        
+        $f = [
+             ["nombre" =>  "Un Romeo sin Julieta","precio"=>1500],
+             ["nombre" => "Italiano","precio"=>700],
+             ["nombre" =>  "La Dama de negro" ,"precio"=>950],
+             ["nombre" => "El Mago","precio"=>1200]
+        ];
+      
+        return print_r ($f);
+        
+    }
+    /**
+     * retorna la informacion del teatro
+     * @return string
+     */
+    public function infoTeatro(){
+        $nombreT= "Colon \n";
+        $direcT="Av. Gucci n°1200 \n";
+        $dataT="Teatro: ".$nombreT. " direccion: " .$direcT. "\n";
+        return $dataT;
+    }
+    
+    public function funcion() {
+        $f = [
+            ["nombre" =>  "Un Romeo sin Julieta","precio"=>1500],
+            ["nombre" => "Italiano","precio"=>700],
+            ["nombre" =>  "La Dama de negro" ,"precio"=>950],
+            ["nombre" => "El Mago","precio"=>1200]
+        ];
+        return $f;
+    }
+    
+    /**
+     * modifica los datos
+     * @param int $n
+     * @param string $nombreT
+     * @param string $direcT
+     * @param string $nombre
+     * @param int $precio
+     
+     * @return string
+     */
+    public function modificacion($n,$nombreT,$direcT,$nombre,$precio){
+        
+      $nomT= $this->setNombreT($nombreT);
+      $dirT= $this->setDirecT($direcT);   
+      $numFuncion= $this->getFuncion();
+      if($n==1){
+      $nombreF= $this-> setNombreF($f[0]=["nombre"][$nombre]);
+      $precioF= $this-> setPrecioF($f[0]=["precio"][$precio]);
+      $nuevoDatos= "nuevo nombre del teatro: ".$nomT."\n nueva direccion: ".$dirT."\n nuevo nombre de funciones: ".$nombreF. "\n precio nuevo: ".$precioF;
+      }elseif($n==2){
+          $nombreF= $this-> setNombreF($f[1]["nombre"][$nombre]);
+          $precioF= $this-> setPrecioF($f[1]["precio"][$precio]);
+          $nuevoDatos= "nuevo nombre del teatro: ".$nomT."\n nueva direccion: ".$dirT."\n nuevo nombre de funciones: ".$nombreF. "\n precio nuevo: ".$precioF;
+      }elseif($n==3){
+          $nombreF= $this-> setNombreF($f[2]["nombre"][$nombre]);
+          $precioF= $this-> setPrecioF($f[2]["precio"][$precio]);
+          $nuevoDatos= "nuevo nombre del teatro: ".$nomT."\n nueva direccion: ".$dirT."\n nuevo nombre de funciones: ".$nombreF. "\n precio nuevo: ".$precioF;
+      }elseif($n==4){
+          $nombreF= $this-> setNombreF($f[3]["nombre"][$nombre]);
+          $precioF= $this-> setPrecioF($f[3]["precio"][$precio]);
+          $nuevoDatos= "nuevo nombre del teatro: ".$nomT."\n nueva direccion: ".$dirT."\n nuevo nombre de funciones: ".$nombreF. "\n precio nuevo: ".$precioF;
+      }
+      
+      return $nuevoDatos;
+    }
+    
+    
+    }
+    
+    //TEST_TEATRO
+    
+    include_once "teatro.php";
+    $funciones= teatro::verDatos();
+    echo teatro::infoTeatro();
+    
+    echo "desea modificar alguna funcion?";
+    $cambiar=trim(fgets(STDIN));
+    if ($cambiar=="s"){
+        echo "que funcion desea modificar? (1/2/3/4)?";
+        $numF=trim(fgets(STDIN));
+        
+        echo "ingrese el nombre del teatro:";
+        $nombreT=trim(fgets(STDIN));
+        
+        echo "ingrese la direccion:";
+        $direcT=trim(fgets(STDIN));
+        echo "ingrese el nombre de la funcion:";
+        $nombreFunciones=trim(fgets(STDIN));
+        
+        echo "ingrese el precio:";
+        $precio=trim(fgets(STDIN));
+        
+        
+        $cambiar= teatro::modificacion($numF,$nombreT,$direcT,$nombreFunciones,$precio);
+    }
+    
